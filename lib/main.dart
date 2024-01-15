@@ -11,11 +11,11 @@ void main() async {
   await windowManager.ensureInitialized();
 
   if (Platform.isWindows) {
-    WindowManager.instance.setMinimumSize(const Size(1200, 700));
-    WindowManager.instance.setMaximumSize(const Size(1200, 700));
+    WindowManager.instance.setMinimumSize(const Size(900, 500));
+    WindowManager.instance.setMaximumSize(const Size(900, 500));
     WindowManager.instance.setMaximizable(false);
     WindowManager.instance.setTitle("MH Launcher");
-    await WindowManager.instance.setSize(const Size(1200, 700));
+    await WindowManager.instance.setSize(const Size(900, 500));
   }
 
   runApp(const ProviderScope(child: MHLauncherApp()));

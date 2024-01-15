@@ -12,8 +12,12 @@ typedef LoadLibraryNative = IntPtr Function(Pointer<Utf16> lpLibFileName);
 typedef LoadLibraryDart = int Function(Pointer<Utf16> lpLibFileName);
 
 class InjectionService {
-  Future<bool> launchAndInjectReshade() async {
+  Future<bool> launchAndInjectReshade(bool inject) async {
     await launchUrlString("steam://run/582010");
+
+    if (!inject) {
+      return true;
+    }
 
     var processId = -1;
     final processes = calloc<DWORD>(1024);
