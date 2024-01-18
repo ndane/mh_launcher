@@ -1,9 +1,11 @@
 import 'dart:ffi';
 
 import 'package:ffi/ffi.dart';
-import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:riverpod_annotation/riverpod_annotation.dart';
 import 'package:url_launcher/url_launcher_string.dart';
 import 'package:win32/win32.dart';
+
+part 'injection_service.g.dart';
 
 const targetExecutable = "MonsterHunterWorld.exe";
 const targetInjectable = "ReShade64.dll";
@@ -123,6 +125,12 @@ class InjectionService {
   }
 }
 
-final injectionServiceProvider = Provider<InjectionService>((ref) {
+@riverpod
+InjectionService injectionService(InjectionServiceRef ref) {
   return InjectionService();
-});
+}
+
+@riverpod
+Future<void> launchAndInject(LaunchAndInjectRef ref, bool inject) async {
+  await ref.watch(injectionServiceProvider).launchAndInjectReshade(inject);
+}

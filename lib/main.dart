@@ -2,7 +2,7 @@ import 'dart:io';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:mh_launcher/ui/launcher_screen.dart';
+import 'package:mh_launcher/ui/launcher/launcher_view.dart';
 import 'package:mh_launcher/ui/theme/themes.dart';
 import 'package:window_manager/window_manager.dart';
 
@@ -31,7 +31,7 @@ class MHLauncherApp extends ConsumerWidget {
       themeMode: ThemeMode.system,
       theme: Themes.lightTheme,
       darkTheme: Themes.darkTheme,
-      home: const LauncherScreen(),
+      home: const LauncherView(),
     );
   }
 }
