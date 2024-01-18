@@ -7,7 +7,7 @@ part of 'launch_button_presenter.dart';
 // **************************************************************************
 
 String _$launchButtonPresenterHash() =>
-    r'a71f2e6e578a2aea5201c188ef2459f8f83decfe';
+    r'9978a2b5f0070526e188c66b30be147da33349f5';
 
 /// Copied from Dart SDK
 class _SystemHash {

@@ -21,7 +21,7 @@ class LauncherView extends ConsumerWidget {
           ),
         ),
         child: BackdropFilter(
-          filter: ImageFilter.blur(sigmaX: 9, sigmaY: 9),
+          filter: ImageFilter.blur(sigmaX: 48, sigmaY: 48),
           child: Center(
             child: _optionList(ref),
           ),
@@ -36,31 +36,49 @@ class LauncherView extends ConsumerWidget {
     return preferences.when(
         error: (e, st) => const Placeholder(),
         loading: () => const Placeholder(),
-        data: (preferences) => IntrinsicWidth(
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                crossAxisAlignment: CrossAxisAlignment.center,
-                children: [
-                  ListTile(
-                    title: const Text("ReShade Enabled"),
-                    dense: true,
-                    leading: Checkbox(
-                        value: preferences.isReshadeEnabled,
-                        onChanged: (enabled) => ref
-                            .read(preferencesRepositoryProvider.notifier)
-                            .setReshadeEnabled(enabled ?? false)),
+        data: (preferences) => IntrinsicHeight(
+              child: IntrinsicWidth(
+                child: Container(
+                  decoration: BoxDecoration(boxShadow: [
+                    BoxShadow(
+                      color: Colors.black.withAlpha(180),
+                      spreadRadius: 2,
+                      blurRadius: 3,
+                      offset: const Offset(0, 2),
+                    ),
+                  ], borderRadius: BorderRadius.circular(5)),
+                  child: Padding(
+                    padding: const EdgeInsets.all(32.0),
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      children: [
+                        ListTile(
+                          title: const Text("ReShade Enabled"),
+                          dense: true,
+                          leading: Checkbox(
+                              value: preferences.isReshadeEnabled,
+                              onChanged: (enabled) => ref
+                                  .read(preferencesRepositoryProvider.notifier)
+                                  .setReshadeEnabled(enabled ?? false)),
+                        ),
+                        ListTile(
+                          title: const Text("Launch game automatically"),
+                          dense: true,
+                          leading: Checkbox(
+                              value: preferences.isAutoLaunchEnabled,
+                              onChanged: (enabled) => ref
+                                  .read(preferencesRepositoryProvider.notifier)
+                                  .setAutoLaunchEnabled(enabled ?? false)),
+                        ),
+                        const Padding(
+                          padding: EdgeInsets.only(top: 16),
+                          child: LaunchButton(),
+                        ),
+                      ],
+                    ),
                   ),
-                  ListTile(
-                    title: const Text("Launch game automatically"),
-                    dense: true,
-                    leading: Checkbox(
-                        value: preferences.isAutoLaunchEnabled,
-                        onChanged: (enabled) => ref
-                            .read(preferencesRepositoryProvider.notifier)
-                            .setAutoLaunchEnabled(enabled ?? false)),
-                  ),
-                  const LaunchButton(),
-                ],
+                ),
               ),
             ));
   }

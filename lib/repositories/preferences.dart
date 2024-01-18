@@ -44,3 +44,9 @@ class PreferencesRepository extends _$PreferencesRepository {
     await sharedPrefs?.setBool(key, boolean);
   }
 }
+
+@riverpod
+bool isReshadeEnabled(IsReshadeEnabledRef ref) {
+  return ref.read(preferencesRepositoryProvider).value?.isReshadeEnabled ??
+      false;
+}

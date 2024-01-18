@@ -17,6 +17,7 @@ final _privateConstructorUsedError = UnsupportedError(
 /// @nodoc
 mixin _$LaunchButtonModel {
   String get buttonText => throw _privateConstructorUsedError;
+  bool get isEnabled => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
   $LaunchButtonModelCopyWith<LaunchButtonModel> get copyWith =>
@@ -29,7 +30,7 @@ abstract class $LaunchButtonModelCopyWith<$Res> {
           LaunchButtonModel value, $Res Function(LaunchButtonModel) then) =
       _$LaunchButtonModelCopyWithImpl<$Res, LaunchButtonModel>;
   @useResult
-  $Res call({String buttonText});
+  $Res call({String buttonText, bool isEnabled});
 }
 
 /// @nodoc
@@ -46,12 +47,17 @@ class _$LaunchButtonModelCopyWithImpl<$Res, $Val extends LaunchButtonModel>
   @override
   $Res call({
     Object? buttonText = null,
+    Object? isEnabled = null,
   }) {
     return _then(_value.copyWith(
       buttonText: null == buttonText
           ? _value.buttonText
           : buttonText // ignore: cast_nullable_to_non_nullable
               as String,
+      isEnabled: null == isEnabled
+          ? _value.isEnabled
+          : isEnabled // ignore: cast_nullable_to_non_nullable
+              as bool,
     ) as $Val);
   }
 }
@@ -64,7 +70,7 @@ abstract class _$$LaunchButtonModelImplCopyWith<$Res>
       __$$LaunchButtonModelImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({String buttonText});
+  $Res call({String buttonText, bool isEnabled});
 }
 
 /// @nodoc
@@ -79,12 +85,17 @@ class __$$LaunchButtonModelImplCopyWithImpl<$Res>
   @override
   $Res call({
     Object? buttonText = null,
+    Object? isEnabled = null,
   }) {
     return _then(_$LaunchButtonModelImpl(
       buttonText: null == buttonText
           ? _value.buttonText
           : buttonText // ignore: cast_nullable_to_non_nullable
               as String,
+      isEnabled: null == isEnabled
+          ? _value.isEnabled
+          : isEnabled // ignore: cast_nullable_to_non_nullable
+              as bool,
     ));
   }
 }
@@ -94,14 +105,17 @@ class __$$LaunchButtonModelImplCopyWithImpl<$Res>
 class _$LaunchButtonModelImpl
     with DiagnosticableTreeMixin
     implements _LaunchButtonModel {
-  const _$LaunchButtonModelImpl({required this.buttonText});
+  const _$LaunchButtonModelImpl(
+      {required this.buttonText, required this.isEnabled});
 
   @override
   final String buttonText;
+  @override
+  final bool isEnabled;
 
   @override
   String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
-    return 'LaunchButtonModel(buttonText: $buttonText)';
+    return 'LaunchButtonModel(buttonText: $buttonText, isEnabled: $isEnabled)';
   }
 
   @override
@@ -109,7 +123,8 @@ class _$LaunchButtonModelImpl
     super.debugFillProperties(properties);
     properties
       ..add(DiagnosticsProperty('type', 'LaunchButtonModel'))
-      ..add(DiagnosticsProperty('buttonText', buttonText));
+      ..add(DiagnosticsProperty('buttonText', buttonText))
+      ..add(DiagnosticsProperty('isEnabled', isEnabled));
   }
 
   @override
@@ -118,11 +133,13 @@ class _$LaunchButtonModelImpl
         (other.runtimeType == runtimeType &&
             other is _$LaunchButtonModelImpl &&
             (identical(other.buttonText, buttonText) ||
-                other.buttonText == buttonText));
+                other.buttonText == buttonText) &&
+            (identical(other.isEnabled, isEnabled) ||
+                other.isEnabled == isEnabled));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, buttonText);
+  int get hashCode => Object.hash(runtimeType, buttonText, isEnabled);
 
   @JsonKey(ignore: true)
   @override
@@ -133,11 +150,14 @@ class _$LaunchButtonModelImpl
 }
 
 abstract class _LaunchButtonModel implements LaunchButtonModel {
-  const factory _LaunchButtonModel({required final String buttonText}) =
-      _$LaunchButtonModelImpl;
+  const factory _LaunchButtonModel(
+      {required final String buttonText,
+      required final bool isEnabled}) = _$LaunchButtonModelImpl;
 
   @override
   String get buttonText;
+  @override
+  bool get isEnabled;
   @override
   @JsonKey(ignore: true)
   _$$LaunchButtonModelImplCopyWith<_$LaunchButtonModelImpl> get copyWith =>

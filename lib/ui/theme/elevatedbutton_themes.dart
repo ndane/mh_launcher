@@ -6,7 +6,7 @@ class ElevatedButtonThemes {
 
   static ElevatedButtonThemeData darkTheme = ElevatedButtonThemeData(
     style: ElevatedButton.styleFrom(
-      backgroundColor: Colors.deepPurple,
+      backgroundColor: Colors.lightGreen,
       foregroundColor: Colors.white,
       disabledBackgroundColor: Colors.grey,
       textStyle: TextThemes.darkTextTheme.bodyMedium,
@@ -15,9 +15,10 @@ class ElevatedButtonThemes {
 
   static ElevatedButtonThemeData lightTheme = ElevatedButtonThemeData(
     style: ElevatedButton.styleFrom(
-      backgroundColor: Colors.deepPurple,
+      backgroundColor: Colors.lightGreen,
       foregroundColor: Colors.white,
       disabledBackgroundColor: Colors.grey,
+      textStyle: TextThemes.lightTextTheme.bodyMedium,
     ),
   );
 }

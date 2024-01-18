@@ -15,8 +15,9 @@ class LaunchButton extends ConsumerWidget {
 
   Widget _launchButtom(LaunchButtonModel state, WidgetRef ref) =>
       ElevatedButton(
-          onPressed: () =>
-              ref.read(launchButtonPresenterProvider(ref).notifier).launch(),
+          onPressed: () => state.isEnabled
+              ? ref.read(launchButtonPresenterProvider(ref).notifier).launch()
+              : null,
           style: ElevatedButton.styleFrom(
               fixedSize: const Size(300, 64),
               shape: const RoundedRectangleBorder(
