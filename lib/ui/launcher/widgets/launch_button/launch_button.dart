@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:mh_launcher/ui/launcher/views/launch_button/launch_button_presenter.dart';
+import 'package:mh_launcher/ui/launcher/widgets/launch_button/launch_button_presenter.dart';
 
 class LaunchButton extends ConsumerWidget {
   const LaunchButton({super.key});

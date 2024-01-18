@@ -2,11 +2,8 @@ import 'dart:ui';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:mh_launcher/ui/launcher/views/launch_button/launch_button.dart';
-
-// TODO: Make the default value read from settings on disk
-final reshadeEnabledProvider = StateProvider<bool>((ref) => true);
-final autoLaunchEnabledProvider = StateProvider<bool>((ref) => false);
+import 'package:mh_launcher/repositories/preferences.dart';
+import 'package:mh_launcher/ui/launcher/widgets/launch_button/launch_button.dart';
 
 class LauncherView extends ConsumerWidget {
   const LauncherView({super.key});
@@ -34,34 +31,37 @@ class LauncherView extends ConsumerWidget {
   }
 
   Widget _optionList(WidgetRef ref) {
-    final reshadeEnabled = ref.watch(reshadeEnabledProvider);
-    final autoLaunchEnabled = ref.watch(autoLaunchEnabledProvider);
+    final preferences = ref.watch(preferencesRepositoryProvider);
 
-    return IntrinsicWidth(
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        crossAxisAlignment: CrossAxisAlignment.center,
-        children: [
-          ListTile(
-            title: const Text("ReShade Enabled"),
-            dense: true,
-            leading: Checkbox(
-                value: reshadeEnabled,
-                onChanged: (enabled) =>
-                    ref.read(reshadeEnabledProvider.notifier).state = enabled!),
-          ),
-          ListTile(
-            title: const Text("Launch game automatically"),
-            dense: true,
-            leading: Checkbox(
-                value: autoLaunchEnabled,
-                onChanged: (enabled) => ref
-                    .read(autoLaunchEnabledProvider.notifier)
-                    .state = enabled!),
-          ),
-          const LaunchButton(),
-        ],
-      ),
-    );
+    return preferences.when(
+        error: (e, st) => const Placeholder(),
+        loading: () => const Placeholder(),
+        data: (preferences) => IntrinsicWidth(
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: [
+                  ListTile(
+                    title: const Text("ReShade Enabled"),
+                    dense: true,
+                    leading: Checkbox(
+                        value: preferences.isReshadeEnabled,
+                        onChanged: (enabled) => ref
+                            .read(preferencesRepositoryProvider.notifier)
+                            .setReshadeEnabled(enabled ?? false)),
+                  ),
+                  ListTile(
+                    title: const Text("Launch game automatically"),
+                    dense: true,
+                    leading: Checkbox(
+                        value: preferences.isAutoLaunchEnabled,
+                        onChanged: (enabled) => ref
+                            .read(preferencesRepositoryProvider.notifier)
+                            .setAutoLaunchEnabled(enabled ?? false)),
+                  ),
+                  const LaunchButton(),
+                ],
+              ),
+            ));
   }
 }
