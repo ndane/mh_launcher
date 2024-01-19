@@ -21,7 +21,7 @@ class LauncherView extends ConsumerWidget {
           ),
         ),
         child: BackdropFilter(
-          filter: ImageFilter.blur(sigmaX: 48, sigmaY: 48),
+          filter: ImageFilter.blur(sigmaX: 30, sigmaY: 30),
           child: Center(
             child: _optionList(ref),
           ),
@@ -42,9 +42,9 @@ class LauncherView extends ConsumerWidget {
                   decoration: BoxDecoration(boxShadow: [
                     BoxShadow(
                       color: Colors.black.withAlpha(180),
-                      spreadRadius: 2,
-                      blurRadius: 3,
-                      offset: const Offset(0, 2),
+                      spreadRadius: 1,
+                      blurRadius: 2,
+                      offset: const Offset(0, 0),
                     ),
                   ], borderRadius: BorderRadius.circular(5)),
                   child: Padding(
