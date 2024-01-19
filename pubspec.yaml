@@ -44,7 +44,9 @@ dependencies:
   freezed_annotation: ^2.4.1
   uuid: ^4.3.2
   shared_preferences: ^2.2.2
-
+  win32_registry: ^1.1.2
+  vdf: ^1.1.0
+  
 dev_dependencies:
   flutter_test:
     sdk: flutter

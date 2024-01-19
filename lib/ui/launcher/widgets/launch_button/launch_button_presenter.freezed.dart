@@ -18,6 +18,7 @@ final _privateConstructorUsedError = UnsupportedError(
 mixin _$LaunchButtonModel {
   String get buttonText => throw _privateConstructorUsedError;
   bool get isEnabled => throw _privateConstructorUsedError;
+  String get gamePath => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
   $LaunchButtonModelCopyWith<LaunchButtonModel> get copyWith =>
@@ -30,7 +31,7 @@ abstract class $LaunchButtonModelCopyWith<$Res> {
           LaunchButtonModel value, $Res Function(LaunchButtonModel) then) =
       _$LaunchButtonModelCopyWithImpl<$Res, LaunchButtonModel>;
   @useResult
-  $Res call({String buttonText, bool isEnabled});
+  $Res call({String buttonText, bool isEnabled, String gamePath});
 }
 
 /// @nodoc
@@ -48,6 +49,7 @@ class _$LaunchButtonModelCopyWithImpl<$Res, $Val extends LaunchButtonModel>
   $Res call({
     Object? buttonText = null,
     Object? isEnabled = null,
+    Object? gamePath = null,
   }) {
     return _then(_value.copyWith(
       buttonText: null == buttonText
@@ -58,6 +60,10 @@ class _$LaunchButtonModelCopyWithImpl<$Res, $Val extends LaunchButtonModel>
           ? _value.isEnabled
           : isEnabled // ignore: cast_nullable_to_non_nullable
               as bool,
+      gamePath: null == gamePath
+          ? _value.gamePath
+          : gamePath // ignore: cast_nullable_to_non_nullable
+              as String,
     ) as $Val);
   }
 }
@@ -70,7 +76,7 @@ abstract class _$$LaunchButtonModelImplCopyWith<$Res>
       __$$LaunchButtonModelImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({String buttonText, bool isEnabled});
+  $Res call({String buttonText, bool isEnabled, String gamePath});
 }
 
 /// @nodoc
@@ -86,6 +92,7 @@ class __$$LaunchButtonModelImplCopyWithImpl<$Res>
   $Res call({
     Object? buttonText = null,
     Object? isEnabled = null,
+    Object? gamePath = null,
   }) {
     return _then(_$LaunchButtonModelImpl(
       buttonText: null == buttonText
@@ -96,6 +103,10 @@ class __$$LaunchButtonModelImplCopyWithImpl<$Res>
           ? _value.isEnabled
           : isEnabled // ignore: cast_nullable_to_non_nullable
               as bool,
+      gamePath: null == gamePath
+          ? _value.gamePath
+          : gamePath // ignore: cast_nullable_to_non_nullable
+              as String,
     ));
   }
 }
@@ -106,16 +117,20 @@ class _$LaunchButtonModelImpl
     with DiagnosticableTreeMixin
     implements _LaunchButtonModel {
   const _$LaunchButtonModelImpl(
-      {required this.buttonText, required this.isEnabled});
+      {required this.buttonText,
+      required this.isEnabled,
+      required this.gamePath});
 
   @override
   final String buttonText;
   @override
   final bool isEnabled;
+  @override
+  final String gamePath;
 
   @override
   String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
-    return 'LaunchButtonModel(buttonText: $buttonText, isEnabled: $isEnabled)';
+    return 'LaunchButtonModel(buttonText: $buttonText, isEnabled: $isEnabled, gamePath: $gamePath)';
   }
 
   @override
@@ -124,7 +139,8 @@ class _$LaunchButtonModelImpl
     properties
       ..add(DiagnosticsProperty('type', 'LaunchButtonModel'))
       ..add(DiagnosticsProperty('buttonText', buttonText))
-      ..add(DiagnosticsProperty('isEnabled', isEnabled));
+      ..add(DiagnosticsProperty('isEnabled', isEnabled))
+      ..add(DiagnosticsProperty('gamePath', gamePath));
   }
 
   @override
@@ -135,11 +151,13 @@ class _$LaunchButtonModelImpl
             (identical(other.buttonText, buttonText) ||
                 other.buttonText == buttonText) &&
             (identical(other.isEnabled, isEnabled) ||
-                other.isEnabled == isEnabled));
+                other.isEnabled == isEnabled) &&
+            (identical(other.gamePath, gamePath) ||
+                other.gamePath == gamePath));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, buttonText, isEnabled);
+  int get hashCode => Object.hash(runtimeType, buttonText, isEnabled, gamePath);
 
   @JsonKey(ignore: true)
   @override
@@ -152,12 +170,15 @@ class _$LaunchButtonModelImpl
 abstract class _LaunchButtonModel implements LaunchButtonModel {
   const factory _LaunchButtonModel(
       {required final String buttonText,
-      required final bool isEnabled}) = _$LaunchButtonModelImpl;
+      required final bool isEnabled,
+      required final String gamePath}) = _$LaunchButtonModelImpl;
 
   @override
   String get buttonText;
   @override
   bool get isEnabled;
+  @override
+  String get gamePath;
   @override
   @JsonKey(ignore: true)
   _$$LaunchButtonModelImplCopyWith<_$LaunchButtonModelImpl> get copyWith =>
