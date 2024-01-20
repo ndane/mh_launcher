@@ -1,7 +1,6 @@
 import 'dart:io';
 
 import 'package:archive/archive.dart';
-import 'package:path_provider/path_provider.dart';
 import 'package:flutter/services.dart' show ByteData, rootBundle;
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 part 'reshade_service.g.dart';
@@ -79,10 +78,4 @@ ReshadeService reshadeService(ReshadeServiceRef ref) {
 @riverpod
 Future<bool> isReshadeInstalled(IsReshadeInstalledRef ref, String path) async {
   return await ref.watch(reshadeServiceProvider).isReshadeInstalled(path);
-}
-
-@riverpod
-Future<void> installReshade(
-    InstallReshadeRef ref, String path, bool includeSettings) async {
-  await ref.watch(reshadeServiceProvider).installReshade(path, includeSettings);
 }

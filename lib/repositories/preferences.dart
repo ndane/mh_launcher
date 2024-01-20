@@ -1,5 +1,3 @@
-import 'dart:ffi';
-
 import 'package:mh_launcher/model/preferences.dart';
 import 'package:mh_launcher/providers/shared_preferences.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
