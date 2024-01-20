@@ -3,6 +3,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:mh_launcher/repositories/preferences.dart';
 import 'package:mh_launcher/services/game_locator_service.dart';
 import 'package:mh_launcher/services/injection_service.dart';
+import 'package:mh_launcher/services/process_monitor_service.dart';
 import 'package:mh_launcher/services/reshade_service.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
@@ -24,9 +25,14 @@ class LaunchButtonPresenter extends _$LaunchButtonPresenter {
   FutureOr<LaunchButtonModel> build(WidgetRef widgetRef) async {
     final gameLocatorService = ref.read(gameLocatorServiceProvider);
     final gamePath = await gameLocatorService.findSteamGamePath(582010);
+
+    final processPid =
+        ref.watch(monitorProcessPidProvider("MonsterHunterWorld.exe"));
+    final processRunning = processPid.value != null;
+
     return LaunchButtonModel(
-      buttonText: "Launch Game",
-      isEnabled: true,
+      buttonText: !processRunning ? "Launch Game" : "Game Running",
+      isEnabled: !processRunning,
       gamePath: gamePath,
     );
   }
