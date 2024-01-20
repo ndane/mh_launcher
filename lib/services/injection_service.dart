@@ -14,13 +14,7 @@ typedef LoadLibraryNative = IntPtr Function(Pointer<Utf16> lpLibFileName);
 typedef LoadLibraryDart = int Function(Pointer<Utf16> lpLibFileName);
 
 class InjectionService {
-  Future<bool> launchAndInjectReshade(bool inject) async {
-    await launchUrlString("steam://run/582010");
-
-    if (!inject) {
-      return true;
-    }
-
+  Future<bool> injectReshade() async {
     var processId = -1;
     final processes = calloc<DWORD>(1024);
     final cbNeeded = calloc<DWORD>();
@@ -50,8 +44,17 @@ class InjectionService {
 
     free(cbNeeded);
     free(processes);
-
     return true;
+  }
+
+  Future<bool> launchAndInjectReshade(bool inject) async {
+    await launchUrlString("steam://run/582010");
+
+    if (!inject) {
+      return true;
+    }
+
+    return await injectReshade();
   }
 
   String _processNameFromPid(int pid) {

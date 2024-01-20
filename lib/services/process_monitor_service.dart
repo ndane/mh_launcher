@@ -41,7 +41,7 @@ class ProcessMonitorService {
         yield null;
       }
 
-      await Future.delayed(const Duration(seconds: 1));
+      await Future.delayed(const Duration(milliseconds: 100));
     }
   }
 

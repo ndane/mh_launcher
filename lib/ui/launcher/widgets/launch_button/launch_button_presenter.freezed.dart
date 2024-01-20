@@ -19,6 +19,7 @@ mixin _$LaunchButtonModel {
   String get buttonText => throw _privateConstructorUsedError;
   bool get isEnabled => throw _privateConstructorUsedError;
   String get gamePath => throw _privateConstructorUsedError;
+  bool get launchPressed => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
   $LaunchButtonModelCopyWith<LaunchButtonModel> get copyWith =>
@@ -31,7 +32,8 @@ abstract class $LaunchButtonModelCopyWith<$Res> {
           LaunchButtonModel value, $Res Function(LaunchButtonModel) then) =
       _$LaunchButtonModelCopyWithImpl<$Res, LaunchButtonModel>;
   @useResult
-  $Res call({String buttonText, bool isEnabled, String gamePath});
+  $Res call(
+      {String buttonText, bool isEnabled, String gamePath, bool launchPressed});
 }
 
 /// @nodoc
@@ -50,6 +52,7 @@ class _$LaunchButtonModelCopyWithImpl<$Res, $Val extends LaunchButtonModel>
     Object? buttonText = null,
     Object? isEnabled = null,
     Object? gamePath = null,
+    Object? launchPressed = null,
   }) {
     return _then(_value.copyWith(
       buttonText: null == buttonText
@@ -64,6 +67,10 @@ class _$LaunchButtonModelCopyWithImpl<$Res, $Val extends LaunchButtonModel>
           ? _value.gamePath
           : gamePath // ignore: cast_nullable_to_non_nullable
               as String,
+      launchPressed: null == launchPressed
+          ? _value.launchPressed
+          : launchPressed // ignore: cast_nullable_to_non_nullable
+              as bool,
     ) as $Val);
   }
 }
@@ -76,7 +83,8 @@ abstract class _$$LaunchButtonModelImplCopyWith<$Res>
       __$$LaunchButtonModelImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({String buttonText, bool isEnabled, String gamePath});
+  $Res call(
+      {String buttonText, bool isEnabled, String gamePath, bool launchPressed});
 }
 
 /// @nodoc
@@ -93,6 +101,7 @@ class __$$LaunchButtonModelImplCopyWithImpl<$Res>
     Object? buttonText = null,
     Object? isEnabled = null,
     Object? gamePath = null,
+    Object? launchPressed = null,
   }) {
     return _then(_$LaunchButtonModelImpl(
       buttonText: null == buttonText
@@ -107,6 +116,10 @@ class __$$LaunchButtonModelImplCopyWithImpl<$Res>
           ? _value.gamePath
           : gamePath // ignore: cast_nullable_to_non_nullable
               as String,
+      launchPressed: null == launchPressed
+          ? _value.launchPressed
+          : launchPressed // ignore: cast_nullable_to_non_nullable
+              as bool,
     ));
   }
 }
@@ -119,7 +132,8 @@ class _$LaunchButtonModelImpl
   const _$LaunchButtonModelImpl(
       {required this.buttonText,
       required this.isEnabled,
-      required this.gamePath});
+      required this.gamePath,
+      required this.launchPressed});
 
   @override
   final String buttonText;
@@ -127,10 +141,12 @@ class _$LaunchButtonModelImpl
   final bool isEnabled;
   @override
   final String gamePath;
+  @override
+  final bool launchPressed;
 
   @override
   String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
-    return 'LaunchButtonModel(buttonText: $buttonText, isEnabled: $isEnabled, gamePath: $gamePath)';
+    return 'LaunchButtonModel(buttonText: $buttonText, isEnabled: $isEnabled, gamePath: $gamePath, launchPressed: $launchPressed)';
   }
 
   @override
@@ -140,7 +156,8 @@ class _$LaunchButtonModelImpl
       ..add(DiagnosticsProperty('type', 'LaunchButtonModel'))
       ..add(DiagnosticsProperty('buttonText', buttonText))
       ..add(DiagnosticsProperty('isEnabled', isEnabled))
-      ..add(DiagnosticsProperty('gamePath', gamePath));
+      ..add(DiagnosticsProperty('gamePath', gamePath))
+      ..add(DiagnosticsProperty('launchPressed', launchPressed));
   }
 
   @override
@@ -153,11 +170,14 @@ class _$LaunchButtonModelImpl
             (identical(other.isEnabled, isEnabled) ||
                 other.isEnabled == isEnabled) &&
             (identical(other.gamePath, gamePath) ||
-                other.gamePath == gamePath));
+                other.gamePath == gamePath) &&
+            (identical(other.launchPressed, launchPressed) ||
+                other.launchPressed == launchPressed));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, buttonText, isEnabled, gamePath);
+  int get hashCode =>
+      Object.hash(runtimeType, buttonText, isEnabled, gamePath, launchPressed);
 
   @JsonKey(ignore: true)
   @override
@@ -171,7 +191,8 @@ abstract class _LaunchButtonModel implements LaunchButtonModel {
   const factory _LaunchButtonModel(
       {required final String buttonText,
       required final bool isEnabled,
-      required final String gamePath}) = _$LaunchButtonModelImpl;
+      required final String gamePath,
+      required final bool launchPressed}) = _$LaunchButtonModelImpl;
 
   @override
   String get buttonText;
@@ -179,6 +200,8 @@ abstract class _LaunchButtonModel implements LaunchButtonModel {
   bool get isEnabled;
   @override
   String get gamePath;
+  @override
+  bool get launchPressed;
   @override
   @JsonKey(ignore: true)
   _$$LaunchButtonModelImplCopyWith<_$LaunchButtonModelImpl> get copyWith =>

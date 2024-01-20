@@ -16,6 +16,7 @@ class LaunchButtonModel with _$LaunchButtonModel {
     required String buttonText,
     required bool isEnabled,
     required String gamePath,
+    required bool launchPressed,
   }) = _LaunchButtonModel;
 }
 
@@ -30,18 +31,27 @@ class LaunchButtonPresenter extends _$LaunchButtonPresenter {
         ref.watch(monitorProcessPidProvider("MonsterHunterWorld.exe"));
     final processRunning = processPid.value != null;
 
+    if (processRunning && !state.requireValue.launchPressed) {
+      await launch(true);
+    }
+
     return LaunchButtonModel(
       buttonText: !processRunning ? "Launch Game" : "Game Running",
       isEnabled: !processRunning,
       gamePath: gamePath,
+      launchPressed: false,
     );
   }
 
-  FutureOr<void> launch() async {
+  FutureOr<void> launch(bool gameAlreadyRunning) async {
     final injectionService = ref.read(injectionServiceProvider);
     final isReshadeEnabled = ref.read(isReshadeEnabledProvider);
     final isDefaultSettingsEnabled =
         ref.read(isDefaultReshadeSettingsEnabledProvider);
+
+    state = AsyncValue.data(state.requireValue.copyWith(
+      launchPressed: true,
+    ));
 
     // Check reshade is installed if enabled
     if (isReshadeEnabled) {
@@ -58,7 +68,14 @@ class LaunchButtonPresenter extends _$LaunchButtonPresenter {
     }
 
     state = const AsyncLoading();
-    await injectionService.launchAndInjectReshade(isReshadeEnabled);
+    if (gameAlreadyRunning) {
+      if (isReshadeEnabled) {
+        await injectionService.injectReshade();
+      }
+    } else {
+      await injectionService.launchAndInjectReshade(isReshadeEnabled);
+    }
+
     state = AsyncValue.data(state.requireValue.copyWith(
       buttonText: "Game Running",
       isEnabled: false,
