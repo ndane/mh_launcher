@@ -3,6 +3,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:mh_launcher/repositories/preferences.dart';
 import 'package:mh_launcher/services/game_locator_service.dart';
 import 'package:mh_launcher/services/injection_service.dart';
+import 'package:mh_launcher/services/reshade_service.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 part 'launch_button_presenter.g.dart';
@@ -31,11 +32,27 @@ class LaunchButtonPresenter extends _$LaunchButtonPresenter {
   }
 
   FutureOr<void> launch() async {
-    final service = ref.read(injectionServiceProvider);
+    final injectionService = ref.read(injectionServiceProvider);
     final isReshadeEnabled = ref.read(isReshadeEnabledProvider);
+    final isDefaultSettingsEnabled =
+        ref.read(isDefaultReshadeSettingsEnabledProvider);
+
+    // Check reshade is installed if enabled
+    if (isReshadeEnabled) {
+      final gamePath = state.requireValue.gamePath;
+      final isReshadeInstalled =
+          ref.read(isReshadeInstalledProvider(gamePath)).value;
+
+      // Install if it is not
+      if (isReshadeInstalled != true) {
+        await ref
+            .read(reshadeServiceProvider)
+            .installReshade(gamePath, isDefaultSettingsEnabled);
+      }
+    }
 
     state = const AsyncLoading();
-    await service.launchAndInjectReshade(isReshadeEnabled);
+    await injectionService.launchAndInjectReshade(isReshadeEnabled);
     state = AsyncValue.data(state.requireValue.copyWith(
       buttonText: "Game Running",
       isEnabled: false,

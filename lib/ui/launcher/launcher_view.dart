@@ -63,6 +63,18 @@ class LauncherView extends ConsumerWidget {
                                   .setReshadeEnabled(enabled ?? false)),
                         ),
                         ListTile(
+                          title:
+                              const Text("Recommended ReShade settings (SMAA)"),
+                          dense: true,
+                          leading: Checkbox(
+                              value:
+                                  preferences.isDefaultReshadeSettingsEnabled,
+                              onChanged: (enabled) => ref
+                                  .read(preferencesRepositoryProvider.notifier)
+                                  .setDefaultReshadeSettingsEnabled(
+                                      enabled ?? false)),
+                        ),
+                        ListTile(
                           title: const Text("Launch game automatically"),
                           dense: true,
                           leading: Checkbox(

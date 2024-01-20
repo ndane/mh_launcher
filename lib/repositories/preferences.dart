@@ -1,3 +1,5 @@
+import 'dart:ffi';
+
 import 'package:mh_launcher/model/preferences.dart';
 import 'package:mh_launcher/providers/shared_preferences.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
@@ -9,19 +11,33 @@ class PreferencesRepository extends _$PreferencesRepository {
   FutureOr<Preferences> build() async {
     return Preferences(
       isReshadeEnabled: isReshadeEnabled(),
+      isDefaultReshadeSettingsEnabled: isDefaultReshadeSettingsEnabled(),
       isAutoLaunchEnabled: isAutoLaunchEnabled(),
     );
   }
 
   bool isReshadeEnabled() {
     final sharedPrefs = ref.watch(sharedPreferencesProvider).value;
-    return sharedPrefs?.getBool('reshade') ?? false;
+    return sharedPrefs?.getBool('reshade') ?? true;
   }
 
   Future<void> setReshadeEnabled(bool enabled) async {
     await _writeBool('reshade', enabled);
 
     final newState = state.value?.copyWith(isReshadeEnabled: enabled);
+    state = AsyncValue.data(newState ?? await build());
+  }
+
+  bool isDefaultReshadeSettingsEnabled() {
+    final sharedPrefs = ref.watch(sharedPreferencesProvider).value;
+    return sharedPrefs?.getBool('reshade-default') ?? true;
+  }
+
+  Future<void> setDefaultReshadeSettingsEnabled(bool enabled) async {
+    await _writeBool('reshade-default', enabled);
+
+    final newState =
+        state.value?.copyWith(isDefaultReshadeSettingsEnabled: enabled);
     state = AsyncValue.data(newState ?? await build());
   }
 
@@ -49,4 +65,13 @@ class PreferencesRepository extends _$PreferencesRepository {
 bool isReshadeEnabled(IsReshadeEnabledRef ref) {
   return ref.read(preferencesRepositoryProvider).value?.isReshadeEnabled ??
       false;
+}
+
+@riverpod
+bool isDefaultReshadeSettingsEnabled(IsDefaultReshadeSettingsEnabledRef ref) {
+  return ref
+          .read(preferencesRepositoryProvider)
+          .value
+          ?.isDefaultReshadeSettingsEnabled ??
+      true;
 }

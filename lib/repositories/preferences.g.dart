@@ -21,8 +21,25 @@ final isReshadeEnabledProvider = AutoDisposeProvider<bool>.internal(
 );
 
 typedef IsReshadeEnabledRef = AutoDisposeProviderRef<bool>;
+String _$isDefaultReshadeSettingsEnabledHash() =>
+    r'2e503e58162804a0cb89125761c7b6c74fe078ec';
+
+/// See also [isDefaultReshadeSettingsEnabled].
+@ProviderFor(isDefaultReshadeSettingsEnabled)
+final isDefaultReshadeSettingsEnabledProvider =
+    AutoDisposeProvider<bool>.internal(
+  isDefaultReshadeSettingsEnabled,
+  name: r'isDefaultReshadeSettingsEnabledProvider',
+  debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
+      ? null
+      : _$isDefaultReshadeSettingsEnabledHash,
+  dependencies: null,
+  allTransitiveDependencies: null,
+);
+
+typedef IsDefaultReshadeSettingsEnabledRef = AutoDisposeProviderRef<bool>;
 String _$preferencesRepositoryHash() =>
-    r'c08cbda14b8092189d1a7d07c0a673b5566b3239';
+    r'537dcad601072057be58ed97ea005ccbfddac660';
 
 /// See also [PreferencesRepository].
 @ProviderFor(PreferencesRepository)

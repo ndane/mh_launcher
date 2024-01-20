@@ -5,6 +5,7 @@ part 'preferences.freezed.dart';
 class Preferences with _$Preferences {
   const factory Preferences({
     required bool isReshadeEnabled,
+    required bool isDefaultReshadeSettingsEnabled,
     required bool isAutoLaunchEnabled,
   }) = _Preferences;
 }

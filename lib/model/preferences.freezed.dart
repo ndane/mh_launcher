@@ -17,6 +17,8 @@ final _privateConstructorUsedError = UnsupportedError(
 /// @nodoc
 mixin _$Preferences {
   bool get isReshadeEnabled => throw _privateConstructorUsedError;
+  bool get isDefaultReshadeSettingsEnabled =>
+      throw _privateConstructorUsedError;
   bool get isAutoLaunchEnabled => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
@@ -30,7 +32,10 @@ abstract class $PreferencesCopyWith<$Res> {
           Preferences value, $Res Function(Preferences) then) =
       _$PreferencesCopyWithImpl<$Res, Preferences>;
   @useResult
-  $Res call({bool isReshadeEnabled, bool isAutoLaunchEnabled});
+  $Res call(
+      {bool isReshadeEnabled,
+      bool isDefaultReshadeSettingsEnabled,
+      bool isAutoLaunchEnabled});
 }
 
 /// @nodoc
@@ -47,12 +52,17 @@ class _$PreferencesCopyWithImpl<$Res, $Val extends Preferences>
   @override
   $Res call({
     Object? isReshadeEnabled = null,
+    Object? isDefaultReshadeSettingsEnabled = null,
     Object? isAutoLaunchEnabled = null,
   }) {
     return _then(_value.copyWith(
       isReshadeEnabled: null == isReshadeEnabled
           ? _value.isReshadeEnabled
           : isReshadeEnabled // ignore: cast_nullable_to_non_nullable
+              as bool,
+      isDefaultReshadeSettingsEnabled: null == isDefaultReshadeSettingsEnabled
+          ? _value.isDefaultReshadeSettingsEnabled
+          : isDefaultReshadeSettingsEnabled // ignore: cast_nullable_to_non_nullable
               as bool,
       isAutoLaunchEnabled: null == isAutoLaunchEnabled
           ? _value.isAutoLaunchEnabled
@@ -70,7 +80,10 @@ abstract class _$$PreferencesImplCopyWith<$Res>
       __$$PreferencesImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({bool isReshadeEnabled, bool isAutoLaunchEnabled});
+  $Res call(
+      {bool isReshadeEnabled,
+      bool isDefaultReshadeSettingsEnabled,
+      bool isAutoLaunchEnabled});
 }
 
 /// @nodoc
@@ -85,12 +98,17 @@ class __$$PreferencesImplCopyWithImpl<$Res>
   @override
   $Res call({
     Object? isReshadeEnabled = null,
+    Object? isDefaultReshadeSettingsEnabled = null,
     Object? isAutoLaunchEnabled = null,
   }) {
     return _then(_$PreferencesImpl(
       isReshadeEnabled: null == isReshadeEnabled
           ? _value.isReshadeEnabled
           : isReshadeEnabled // ignore: cast_nullable_to_non_nullable
+              as bool,
+      isDefaultReshadeSettingsEnabled: null == isDefaultReshadeSettingsEnabled
+          ? _value.isDefaultReshadeSettingsEnabled
+          : isDefaultReshadeSettingsEnabled // ignore: cast_nullable_to_non_nullable
               as bool,
       isAutoLaunchEnabled: null == isAutoLaunchEnabled
           ? _value.isAutoLaunchEnabled
@@ -104,16 +122,20 @@ class __$$PreferencesImplCopyWithImpl<$Res>
 
 class _$PreferencesImpl implements _Preferences {
   const _$PreferencesImpl(
-      {required this.isReshadeEnabled, required this.isAutoLaunchEnabled});
+      {required this.isReshadeEnabled,
+      required this.isDefaultReshadeSettingsEnabled,
+      required this.isAutoLaunchEnabled});
 
   @override
   final bool isReshadeEnabled;
+  @override
+  final bool isDefaultReshadeSettingsEnabled;
   @override
   final bool isAutoLaunchEnabled;
 
   @override
   String toString() {
-    return 'Preferences(isReshadeEnabled: $isReshadeEnabled, isAutoLaunchEnabled: $isAutoLaunchEnabled)';
+    return 'Preferences(isReshadeEnabled: $isReshadeEnabled, isDefaultReshadeSettingsEnabled: $isDefaultReshadeSettingsEnabled, isAutoLaunchEnabled: $isAutoLaunchEnabled)';
   }
 
   @override
@@ -123,13 +145,17 @@ class _$PreferencesImpl implements _Preferences {
             other is _$PreferencesImpl &&
             (identical(other.isReshadeEnabled, isReshadeEnabled) ||
                 other.isReshadeEnabled == isReshadeEnabled) &&
+            (identical(other.isDefaultReshadeSettingsEnabled,
+                    isDefaultReshadeSettingsEnabled) ||
+                other.isDefaultReshadeSettingsEnabled ==
+                    isDefaultReshadeSettingsEnabled) &&
             (identical(other.isAutoLaunchEnabled, isAutoLaunchEnabled) ||
                 other.isAutoLaunchEnabled == isAutoLaunchEnabled));
   }
 
   @override
-  int get hashCode =>
-      Object.hash(runtimeType, isReshadeEnabled, isAutoLaunchEnabled);
+  int get hashCode => Object.hash(runtimeType, isReshadeEnabled,
+      isDefaultReshadeSettingsEnabled, isAutoLaunchEnabled);
 
   @JsonKey(ignore: true)
   @override
@@ -141,10 +167,13 @@ class _$PreferencesImpl implements _Preferences {
 abstract class _Preferences implements Preferences {
   const factory _Preferences(
       {required final bool isReshadeEnabled,
+      required final bool isDefaultReshadeSettingsEnabled,
       required final bool isAutoLaunchEnabled}) = _$PreferencesImpl;
 
   @override
   bool get isReshadeEnabled;
+  @override
+  bool get isDefaultReshadeSettingsEnabled;
   @override
   bool get isAutoLaunchEnabled;
   @override
