@@ -74,19 +74,19 @@ class LauncherView extends ConsumerWidget {
                                   .setDefaultReshadeSettingsEnabled(
                                       enabled ?? false)),
                         ),
-                        ListTile(
-                          title: const Text("Launch game automatically"),
-                          dense: true,
-                          leading: Checkbox(
-                              value: preferences.isAutoLaunchEnabled,
-                              onChanged: (enabled) => ref
-                                  .read(preferencesRepositoryProvider.notifier)
-                                  .setAutoLaunchEnabled(enabled ?? false)),
-                        ),
-                        const Padding(
-                          padding: EdgeInsets.only(top: 16),
-                          child: LaunchButton(),
-                        ),
+                        // ListTile(
+                        //   title: const Text("Launch game automatically"),
+                        //   dense: true,
+                        //   leading: Checkbox(
+                        //       value: preferences.isAutoLaunchEnabled,
+                        //       onChanged: (enabled) => ref
+                        //           .read(preferencesRepositoryProvider.notifier)
+                        //           .setAutoLaunchEnabled(enabled ?? false)),
+                        // ),
+                        // const Padding(
+                        //   padding: EdgeInsets.only(top: 16),
+                        //   child: LaunchButton(),
+                        // ),
                       ],
                     ),
                   ),
