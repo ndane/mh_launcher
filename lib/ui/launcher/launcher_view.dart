@@ -83,10 +83,10 @@ class LauncherView extends ConsumerWidget {
                         //           .read(preferencesRepositoryProvider.notifier)
                         //           .setAutoLaunchEnabled(enabled ?? false)),
                         // ),
-                        // const Padding(
-                        //   padding: EdgeInsets.only(top: 16),
-                        //   child: LaunchButton(),
-                        // ),
+                        const Padding(
+                          padding: EdgeInsets.only(top: 16),
+                          child: LaunchButton(),
+                        ),
                       ],
                     ),
                   ),
