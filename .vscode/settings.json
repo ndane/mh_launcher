@@ -1,7 +1,8 @@
 {
     "cmake.configureOnOpen": false,
-    "files.exclude": {
-        "**/*.freezed.dart": true,
-        "**/*.g.dart": true
-    },
+    "explorer.fileNesting.enabled": true,
+    "explorer.fileNesting.patterns": {
+        "pubspec.yaml": "pubspec.lock,pubspec_overrides.yaml,.packages,.flutter-plugins,.flutter-plugins-dependencies,.metadata",
+        "*.dart": "${capture}.g.dart,${capture}.freezed.dart",
+    }
 }
